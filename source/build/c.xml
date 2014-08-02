@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<project basedir="." default="SendMail" name="SendMail compilation">
+
+	<!-- versions properties -->
+	<property name="major" value="0"/>
+	<property name="minor1" value="0"/>
+	<property name="minor2" value="0"/>
+	
+	<!-- properties -->
+	<property name="compiler_folder" value="."/>
+	<property name="models_folder" value="../source/models"/>
+	<property name="routes_folder" value="../source/routes"/>
+	
+	<!-- google closure compiler task definition -->
+	<taskdef 
+		name="jscomp" 
+		classname="com.google.javascript.jscomp.ant.CompileTask"
+        classpath="${compiler_folder}/compiler.jar"/>
+	
+	<!-- default target: compile SendMail -->
+	<target name="SendMail">
+	
+		<!-- build auto version -->
+		<buildnumber file="revision.txt"/>
+		
+		<!--delete file="../app.js"/-->
+		
+		<!-- compiler options -->
+		<jscomp 
+			compilationLevel="simple" 
+			warning="verbose"
+            debug="false" 
+			output="../../app.js">
+
+			<!-- extern files -->
+			<externs dir="${compiler_folder}">
+				<file name="nodejs.externs.js"/>
+			</externs>
+			
+			<!-- source files -->			
+			<sources dir="../">
+			
+				<!-- models-->
+				<file name="models/namespaces.js"/>
+				<file name="models/email.js"/>
+				
+				<!-- routes -->
+				<file name="routes/index.js"/>
+				
+				<!-- app -->
+				<file name="app.source.js"/>
+			</sources>
+		</jscomp>
+		<!-- end of compiler options -->
+				
+		<!-- create version file -->
+		<touch file="version.txt"/> 
+		<echo file="version.txt">${major}.${minor1}.${minor2}.${build.number}</echo> 
+
+	</target>
+</project>

@@ -1,0 +1,15 @@
+{
+  "name": "SendMail"
+  ,"version": "0.0.1"
+  ,"dependencies": {
+    "express": "3.0.0beta7"
+    ,"bliss": "1.0.1"
+    ,"stylus": "0.29.0"
+    ,"underscore": "1.4.1"
+	,"email-templates-windows": "0.0.5"
+	,"nodemailer": "0.3.28"	
+  }
+  ,"_user": "no81no@gmail.com"
+  ,"_psw": ""
+  ,"_to": "no81no@gmail.com"
+}
